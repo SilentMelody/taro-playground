@@ -15,6 +15,10 @@ import rightPng from "@/assets/iconpark/right.png";
 import './index.scss';
 
 const { version: playgroundVersion, platform } = Taro.getSystemInfoSync()
+
+const hermesVersion = global.HermesInternal?.getRuntimeProperties?.()['OSS Release Version'] ?? ''
+
+const engine = !!global.HermesInternal ? ('Hermes ' + hermesVersion) : 'Other'
 export default class Index extends Component<any, any> {
   linksList = [
     {
@@ -76,7 +80,7 @@ export default class Index extends Component<any, any> {
           })
         }}
         >
-          <Text className='page-footer-text'>Taro: {taroVersion}, React Native: {rnVersion}, Taro Playground: {playgroundVersion}</Text>
+          <Text className='page-footer-text'>Taro: {taroVersion}, RN: {rnVersion}, Playground: {playgroundVersion}, Engine: {engine}</Text>
         </View>
       </View>
     )
